@@ -1,0 +1,15 @@
+:root { --bg:#0f172a; --panel:#111827; --muted:#94a3b8; --accent:#22d3ee; --fg:#e5e7eb; }
+*{ box-sizing:border-box; font-family:Inter,system-ui,Segoe UI,Arial,sans-serif; }
+body{ margin:0; background:linear-gradient(180deg,#0b1220,#0f172a); color:var(--fg); }
+.container{ max-width:720px; margin:40px auto; padding:24px; background:var(--panel); border-radius:16px; border:1px solid #1f2937; }
+h1{ margin:0 0 8px; }
+.hint{ color:var(--muted); margin:0 0 16px; }
+form{ display:grid; gap:12px; }
+.file, .text{ display:grid; gap:8px; }
+input[type="file"], textarea{ width:100%; padding:12px; background:#0b1220; color:var(--fg); border:1px solid #1f2937; border-radius:10px; }
+.divider{ text-align:center; color:var(--muted); margin:6px 0; }
+button{ padding:12px 16px; border:0; border-radius:10px; background:var(--accent); color:#0b1220; font-weight:700; cursor:pointer; }
+button:disabled{ opacity:0.6; cursor:not-allowed; }
+#result{ margin-top:20px; }
+pre{ white-space:pre-wrap; background:#0b1220; padding:12px; border-radius:10px; border:1px solid #1f2937; }
+.hidden{ display:none; }

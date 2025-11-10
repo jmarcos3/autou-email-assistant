@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AutoU Email Assistant</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Classificador de Emails</h1>
+    <p class="hint">Envie um .txt/.pdf ou cole o texto abaixo.</p>
+
+    <form id="email-form">
+      <label class="file">
+        <span>Arquivo (.txt ou .pdf)</span>
+        <input type="file" id="file" accept=".txt,.pdf" />
+      </label>
+
+      <div class="divider">ou</div>
+
+      <label class="text">
+        <span>Texto do email</span>
+        <textarea id="text" rows="8" placeholder="Cole aqui o conteúdo do email..."></textarea>
+      </label>
+
+      <button type="submit" id="submit">Processar</button>
+    </form>
+
+    <section id="result" class="hidden">
+      <h2>Resultado</h2>
+      <p><strong>Categoria:</strong> <span id="category"></span></p>
+      <p><strong>Resposta sugerida:</strong></p>
+      <pre id="reply"></pre>
+      <details>
+        <summary>Prévia do texto analisado</summary>
+        <pre id="preview"></pre>
+      </details>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>
