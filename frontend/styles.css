@@ -51,6 +51,19 @@ form{ display:grid; gap:12px; margin-top:14px; }
   border:1px solid var(--border); border-radius:10px;
   resize:vertical; min-height:140px; font-family:var(--font-sans);
 }
+
+#text.input--locked{
+  background:#e5e7eb;
+  border-color:#cbd5e1;
+  color:#6b7280;
+  cursor:not-allowed;
+}
+
+#text.input--locked::placeholder{
+  color:#b91c1c;
+  font-weight:600;
+}
+
 .meta-row{ display:flex; justify-content:space-between; color:var(--muted); }
 .actions{ display:flex; gap:8px; }
 
@@ -159,7 +172,6 @@ form{ display:grid; gap:12px; margin-top:14px; }
   .chip-x { line-height: 1; padding: 0 4px; border-radius: 6px; }
   .chip-x:hover { background: #e2e8f0; }
 }
-
 
 /* ====== Mobile polish ====== */
 

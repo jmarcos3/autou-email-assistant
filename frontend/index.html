@@ -43,9 +43,11 @@
     <form id="email-form" autocomplete="off">
       <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Área para soltar arquivo">
         <div class="dropzone-inner">
-          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M12 16V4m0 0l-4 4m4-4l4 4M6 16h12a2 2 0 002-2V9a2 2 0 00-2-2h-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <path d="M12 16V4m0 0l-4 4m4-4l4 4M6 16h12a2 2 0 002-2V9a2 2 0 00-2-2h-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
           <p><strong>Arraste e solte</strong> um arquivo aqui, ou clique para selecionar</p>
-          <small>.txt ou .pdf • até 10 MB</small>
+          <small>.txt ou .pdf • até 5 MB</small>
           <input type="file" id="file" accept=".txt,.pdf" hidden />
         </div>
       </div>
@@ -60,7 +62,7 @@
         <textarea id="text" rows="8" placeholder="Cole aqui o conteúdo do email..."></textarea>
         <div class="meta-row">
           <small id="charCount">0 caracteres</small>
-          <small class="muted">Dica: Ctrl/Cmd + Enter para enviar</small>
+          <small id="textHint" class="muted">Dica: Ctrl/Cmd + Enter para enviar</small>
         </div>
       </label>
 

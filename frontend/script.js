@@ -1,7 +1,7 @@
 const $ = (sel) => document.querySelector(sel)
 
 const API_LOCAL = "http://localhost:8000"
-const API_PROD = "https://email-assistant-u9v0.onrender.com" // Render
+const API_PROD = "https://email-assistant-u9v0.onrender.com" 
 const API_DEFAULT = window.location.hostname.includes("localhost")
   ? API_LOCAL
   : API_PROD
@@ -142,6 +142,16 @@ const modelInfo = $("#modelInfo")
 let currentFile = null
 const MAX_SIZE = 10 * 1024 * 1024
 
+const originalPlaceholder = text.placeholder || ""
+
+function lockTextarea(lock) {
+  text.readOnly = lock
+  text.classList.toggle("input--locked", lock)
+  text.placeholder = lock
+    ? "Campo desativado porque um arquivo foi selecionado."
+    : originalPlaceholder
+}
+
 apiInput.value = getApiBase()
 apiToggle.addEventListener("click", () => {
   const isHidden = apiConfig.classList.toggle("hidden")
@@ -162,13 +172,21 @@ resetApi.addEventListener("click", () => {
 function showFileChip(file) {
   fileChip.classList.remove("hidden")
   fileName.textContent = `${file.name} • ${formatBytes(file.size)}`
+
+  text.value = ""
+  charCount.textContent = "0 caracteres"
+  lockTextarea(true)
 }
+
 function clearSelectedFile() {
   currentFile = null
   fileInput.value = ""
   fileChip.classList.add("hidden")
   fileName.textContent = ""
+
+  lockTextarea(false)
 }
+
 dropzone.addEventListener("click", () => fileInput.click())
 dropzone.addEventListener("keydown", (e) => {
   if (e.key === "Enter" || e.key === " ") {
@@ -190,6 +208,7 @@ dropzone.addEventListener("keydown", (e) => {
     dropzone.classList.remove("dragover")
   })
 )
+
 dropzone.addEventListener("drop", (e) => {
   const f = e.dataTransfer.files?.[0]
   if (!f) return
@@ -204,6 +223,7 @@ dropzone.addEventListener("drop", (e) => {
   currentFile = f
   showFileChip(f)
 })
+
 fileInput.addEventListener("change", (e) => {
   const f = e.target.files?.[0]
   if (!f) return
@@ -220,12 +240,14 @@ fileInput.addEventListener("change", (e) => {
   currentFile = f
   showFileChip(f)
 })
+
 clearFile.addEventListener("click", clearSelectedFile)
 
 text.addEventListener("input", () => {
   const len = text.value.length
   charCount.textContent = `${len} caracteres`
 })
+
 document.addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === "Enter") form.requestSubmit()
 })
@@ -254,6 +276,7 @@ copyReply.addEventListener("click", async () => {
   await navigator.clipboard.writeText(txt)
   toast("Resposta copiada.")
 })
+
 copyPreview.addEventListener("click", async () => {
   const txt = preview.textContent.trim()
   if (!txt) return
@@ -279,8 +302,11 @@ form.addEventListener("submit", async (e) => {
   }
 
   const fd = new FormData()
-  if (file) fd.append("file", file)
-  if (txt.length) fd.append("text", txt)
+  if (file) {
+    fd.append("file", file)
+  } else if (txt.length) {
+    fd.append("text", txt)
+  }
 
   const API_BASE = getApiBase()
 
