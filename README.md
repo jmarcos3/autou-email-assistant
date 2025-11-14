@@ -10,8 +10,8 @@ A aplicação permite o upload de arquivos `.txt` ou `.pdf` (ou a inserção dir
 
 - **Backend:** Python + FastAPI  
 - **Frontend:** HTML + CSS + JS puro  
-- **IA (tentativa):** Hugging Face Inference API  
-- **Hospedagem:** (a definir)
+- **IA:** Google Gemini 2.0 Flash (via API)  
+- **Hospedagem:** Frontend na Vercel • Backend na Render
 
 ---
 
